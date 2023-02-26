@@ -1,0 +1,2 @@
+module EraHelper
+end

@@ -1,0 +1,29 @@
+home page
+<br><br>
+<%= form_tag(controller: 'great_monuments', action: 'add', method: 'post') do %>
+  <%= select_tag(:greatmonument_id, options_for_select(@gms.reject { |gm| @selected_gms.include?(gm) }.map { |gm| [gm.name, gm.id] })) %>
+  <%= submit_tag("Ajouter à l'écran") %>
+<% end %>
+<br>
+<div class="container">
+  <ul class="row text-align-center">
+    <% @selected_gms.each do |gm| %>
+      <li class="d-flex justify-content-between">
+      <%= "#{gm["name"]}" %>
+
+<div class="form-outline d-flex" style="width: 125px;">
+    <label class="form-label " for="typeNumber">Niveau</label>
+    <input min="1" max="200" type="number" id="typeNumber" class="form-control" />
+</div>
+
+
+
+
+      <%= form_tag(url_for(controller: 'great_monuments', action: 'remove', id: gm["id"]), method: 'delete') do %>
+          <%= hidden_field_tag(:greatmonument_id, gm["id"]) %>
+          <%= submit_tag("Supprimer") %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

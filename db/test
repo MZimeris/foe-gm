@@ -1,0 +1,35 @@
+Era.destroy_all
+GreatMonument.destroy_all
+
+monuments = [
+  ['Observatoire', 'Aucun âge'],
+  ['Temple des reliques', 'Aucun âge'],
+  ['Oracle de Delphes', 'Aucun âge'],
+  ['Tour de Babel', 'Âge du Bronze'],
+  ['Statue de Zeus', 'Âge du Bronze'],
+  ['Colisée', 'Âge du Fer'],
+]
+
+eras = []
+buildings = []
+
+monuments.each do |monument|
+  era = monument[1]
+  building = monument[0]
+
+  unless eras.include?(era)
+    eras << era
+  end
+
+  era_index = eras.index(era)
+
+  buildings << { name: building, era_id: era_index }
+end
+
+eras.each do |era|
+  Era.create(name: era_name)
+end
+
+buildings.each do |building|
+  GreatMonument.create(name: building[:name], era_id: building[:era_id])
+end

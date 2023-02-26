@@ -1,0 +1,2 @@
+module GreatMonumentHelper
+end
